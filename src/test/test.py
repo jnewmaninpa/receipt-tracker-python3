@@ -1,6 +1,6 @@
 import unittest
 
-class TestBlockExtractor(unittest.TestCase):
+class Test(unittest.TestCase):
 
     def test(self):
         self.assertEqual(True, True)

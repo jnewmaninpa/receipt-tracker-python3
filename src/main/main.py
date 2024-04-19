@@ -1,5 +1,6 @@
 from transaction import Transaction
 from parser import chase_eml_to_transaction
+from persistance import save_to_csv, read_from_csv
 
 def main():
     print("Welcome to Receipt Tracker\n\n")
@@ -8,6 +9,7 @@ def main():
         print("0: Exit")
         print("1: Enter new transaction")
         print("2: Created transaction from eml")
+        print("3: List all transactions")
         selection = input("Selection: ")
         if selection == "0":
             break
@@ -26,13 +28,10 @@ def main():
             with open(path) as file:
                 transaction = chase_eml_to_transaction(file.read())
             save_to_csv(transaction.to_csv_line())
+        elif selection == "3":
+            print(read_from_csv())
         else:
             print("not a valid selection")
-
-def save_to_csv(line):
-    with open("test.csv", "a") as file:
-        file.write(f"{line}\n")
-
 
 if __name__ == "__main__":
     main()
